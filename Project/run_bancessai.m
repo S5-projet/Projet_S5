@@ -1,3 +1,20 @@
+%% 
+% @file: run_bancessai.m
+% @Date: 2023/09/29
+%
+% @Name: - Shawn Miller (mils2203)
+%        -           
+%        -   
+%        -   
+%        -   
+%        -   
+%        -   
+%
+% @Brief: 
+%   
+%
+%%
+
 close all
 clear all
 clc
@@ -21,7 +38,7 @@ tfin = 50;
 
 %initialisation
 bancEssaiConstantes
-%bancessai_ini  %faites tous vos calculs de modele ici
+bancessai_ini  %faites tous vos calculs de modele ici
 
 %Calcul des compensateurs
 %iniCTL_ver4    %Calculez vos compensateurs ici
