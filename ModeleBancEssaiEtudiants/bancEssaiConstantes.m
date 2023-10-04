@@ -1,3 +1,19 @@
+%% 
+% @file: bancEssaiConstantes.m
+% @Date: 2023/09/29
+%
+% @Name: - Shawn Miller (mils2203)
+%        -           
+%        -   
+%        -   
+%        -   
+%        -   
+%        -   
+%
+% @Brief: 
+%   
+%
+%%
 g   = 9.81;
 
 z_range  = 22.2e-03;            % m

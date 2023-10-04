@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
 % @file: Declaration.m
 % @Date: 2023/09/29
 %
@@ -8,7 +8,7 @@
 % @Brief: Décalaration des Variables utilisé dans le projet
 %   
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 
 % ∗ _𝑚𝑒𝑠 : réfère à des variables mesurées
 % ∗ _𝑑𝑒𝑠 : réfère aux variables désirées ou commandées
