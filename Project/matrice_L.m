@@ -14,6 +14,11 @@ syms Fz(g, Fa, Fb, Fc, ms, mp)
 syms Va Vb Vc L Pz
 syms R 
 
+Ax_des= 0;
+Ay_des=0;
+Px_des=0;
+Py_des=0; 
+Pz_des=0;
 L=115;
 R= 3.6;
 g = 9.81;
@@ -46,6 +51,14 @@ zc= YC*Ax-XC*Ay+Pz;
 ze= Ye*Ax-Xe*Ay+Pz;
 zd= Yd*Ax-Xd*Ay+Pz;
 zf= Yf*Ax-Xf*Ay+Pz;
+ia_eq=-0.03722;
+ib_eq=-0.03722;
+ic_eq=-0.03722;
+Va_eq =-0.1339;
+Vb_eq =-0.1339;
+Vc_eq =-0.1339;
+
+
 
 Fa = ((ia^2+b_e1*abs(ia))*sign(ia))/(a_e0+a_e1*za+a_e2*za^2+a_e3*za^3)-1/(a_s0+a_s1*za+a_s2*za^2+a_s3*za^3);
 Fb = ((ib^2+b_e1*abs(ib))*sign(ib))/(a_e0+a_e1*zb+a_e2*zb^2+a_e3*zb^3)-1/(a_s0+a_s1*zb+a_s2*zb^2+a_s3*zb^3);
@@ -64,11 +77,15 @@ dic= (Vc-R*ic)/L;
 PP = [diff(Mx,Ax) diff(Mx,Ay) diff(Mx,Pz);
       diff(My,Ax) diff(My,Ay) diff(My,Pz);
       diff(Fz,Ax) diff(Fz,Ay) diff(Fz,Pz)];
-
   
+PP_eq = subs(PP,[ia ib ic Va Vb Vc Ax Ay Px Py Pz],[ia_eq ib_eq ic_eq Va_eq Vb_eq Vc_eq Ax_des Ay_des Px_des Py_des Pz_des]);
+
+
 SP = [diff(dx,Ax) diff(dx,Ay) diff(dx,Pz);
       diff(dy,Ax) diff(dy,Ay) diff(dy,Pz)];
+SP_eq = subs(PP,[ia ib ic Va Vb Vc Ax Ay Px Py Pz],[ia_eq ib_eq ic_eq Va_eq Vb_eq Vc_eq Ax_des Ay_des Px_des Py_des Pz_des]); 
   
+
 CC = [diff(dia,ia) diff(dia,ib) diff(dia,ic);
       diff(dib,ia) diff(dib,ib) diff(dib,ic);
       diff(dic,ia) diff(dic,ib) diff(dic,ic)];
