@@ -41,7 +41,7 @@ bancEssaiConstantes
 bancessai_ini  %faites tous vos calculs de modele ici
 
 %Calcul des compensateurs
-%iniCTL_ver4    %Calculez vos compensateurs ici
+iniCTL_ver4    %Calculez vos compensateurs ici
 
 %simulation
 open_system('DYNctl_ver4_etud_obfusc')
