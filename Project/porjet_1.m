@@ -55,6 +55,6 @@ PC = [(diff(Mx,ia_eq)) (diff(Mx,ib_eq)) (diff(Mx,ic_eq)) ;
 Tdef=[Y_d -X_d 1;
       Y_e -X_e 1;
       Y_f -X_f 1];
-  
+   
   
   
