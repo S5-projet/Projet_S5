@@ -15,7 +15,7 @@
 %
 %%
 
-bancEssaiConstantes
+
 courant_voltage
 matrice_L
 porjet_1
