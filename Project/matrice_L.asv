@@ -183,7 +183,7 @@ V_ptz = U*[Va_eq Vb_eq Vc_eq]';
 IP_eq = I_ptz(1);
 It_eq = I_ptz(2);
 Iz_eq = I_ptz(3);
-Vp_eq = V_ptz(1);
+VP_eq = V_ptz(1);
 Vt_eq = V_ptz(2);
 Vz_eq = V_ptz(3);
 
@@ -192,28 +192,20 @@ PP_new = [diff(Mx_new,Ax) diff(Mx_new,Ay) diff(Mx_new,Pz);
           diff(My_new,Ax) diff(My_new,Ay) diff(My_new,Pz);
           diff(Fz_new,Ax) diff(Fz_new,Ay) diff(Fz_new,Pz)];
 
-PP_eq_new = double(subs(PP_new,[I_phi I_theta I_z V_phi V_theta V_z Ax Ay Px Py Pz],[IP_eq It_eq Iz_eq Vp_eq Vt_eq Vz_eq Ax_des Ay_des Px_des Py_des Pz_des]));
+PP_eq_new = double(subs(PP,[I_phi I_tetha I_z Va Vb Vc Ax Ay Px Py Pz],[ia_eq ib_eq ic_eq Va_eq Vb_eq Vc_eq Ax_des Ay_des Px_des Py_des Pz_des]));
       
       
 PC_new = [(diff(Mx_new,I_phi)) (diff(Mx_new,I_theta)) (diff(Mx_new,I_z)) ; 
           (diff(My_new,I_phi)) (diff(My_new,I_theta)) (diff(My_new,I_z)) ;
           (diff(Fz_new,I_phi)) (diff(Fz_new,I_theta)) (diff(Fz_new,I_z))];
       
-PC_eq_new = double(subs(PC_new,[I_phi I_theta I_z V_phi V_theta V_z Ax Ay Px Py Pz],[IP_eq It_eq Iz_eq Vp_eq Vt_eq Vz_eq Ax_des Ay_des Px_des Py_des Pz_des]));
-            
-          
 CC_new = [diff(dia_new,I_phi) diff(dia_new,I_theta) diff(dia_new,I_z) ;
           diff(dib_new,I_phi) diff(dib_new,I_theta) diff(dib_new,I_z) ;
           diff(dic_new,I_phi) diff(dic_new,I_theta) diff(dic_new,I_z)];
       
-CC_eq_new = double(subs(CC_new,[I_phi I_theta I_z V_phi V_theta V_z Ax Ay Px Py Pz],[IP_eq It_eq Iz_eq Vp_eq Vt_eq Vz_eq Ax_des Ay_des Px_des Py_des Pz_des]));
-           
-      
 CV_new = [(diff(dia_new,V_phi)) (diff(dia_new,V_theta)) (diff(dia_new,V_z)) ; 
           (diff(dib_new,V_phi)) (diff(dib_new,V_theta)) (diff(dib_new,V_z)) ;
           (diff(dic_new,V_phi)) (diff(dic_new,V_theta)) (diff(dic_new,V_z))];
-      
-CV_eq_new = double(subs(CV_new,[I_phi I_theta I_z V_phi V_theta V_z Ax Ay Px Py Pz],[IP_eq It_eq Iz_eq Vp_eq Vt_eq Vz_eq Ax_des Ay_des Px_des Py_des Pz_des]));
       
 
 
