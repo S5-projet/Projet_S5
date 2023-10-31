@@ -19,16 +19,17 @@
 courant_voltage
 matrice_L
 porjet_1
+Fek_Fs
 
 
-ae0 = -1.3924;
-ae1 = 0.0068;
-ae2 = -5.2627e-05;
-ae3 = 6.6906e-07;
-as0 = 0.0623;
-as1 = -2.2871e-04;
-as2 = 1.6798e-06;
-as3 = -2.1645e-08;
+ae0 = Fe_coeff(1);
+ae1 = Fe_coeff(2);
+ae2 = Fe_coeff(3);
+ae3 = Fe_coeff(4);
+as0 = Fs_coeff(1);
+as1 = Fs_coeff(2);
+as2 = Fs_coeff(3);
+as3 = Fs_coeff(4);
 be1 = 13.029359254409743;
 
 
