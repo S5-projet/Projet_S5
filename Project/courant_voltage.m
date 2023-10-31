@@ -7,7 +7,7 @@ syms Mx(Fb, Fc, Px_eq, Py_eq, XC, XB, ms, g, Ax_eq, Ay_eq)
 syms My(Fa, Fb, Fc, Px_eq, Py_eq, XC, XB, XA, ms,g)
 syms fz(g, Fa, Fb, Fc, ms, mp)
 
-%variable qui ne change pas 
+% Constante
 g = 9.81;  
 XA = 0.0952;
 XB = XA*sind(30);
@@ -20,18 +20,18 @@ ms = 0.008;
 mp = 0.442;
 R= 3.6;
 
-%variable qui peux changer
+%variable
 Px_eq= 0;
 Py_eq= 0;
 z_eq= 0.010; 
-a_s0 =2 ;
-a_s1 =-0.62 ;
-a_s2 =7 ;
-a_s3 =0.2 ;
-a_e0 =2 ; 
-a_e1 =0.26 ; 
-a_e2 =3.2 ; 
-a_e3 =1.94;
+a_s0 =0.0623 ;
+a_s1 =-2.2871 ;
+a_s2 =1 ;
+a_s3 =1 ;
+a_e0 =-1.3924 ; 
+a_e1 =1 ; 
+a_e2 =1 ; 
+a_e3 =1 ;
 
 % equation pour trouver ia, ib, ic
 Fa = ((ia_eq^2+b_e1*abs(ia_eq))*sign(ia_eq))/(a_e0+a_e1*z_eq+a_e2*z_eq^2+a_e3*z_eq^3)-1/(a_s0+a_s1*z_eq+a_s2*z_eq^2+a_s3*z_eq^3);
