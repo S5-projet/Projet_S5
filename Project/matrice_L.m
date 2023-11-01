@@ -1,6 +1,6 @@
 close all
 clc
-clear all
+
 
 
 syms Wx_eq Wy_eq % phi' theta'
@@ -228,5 +228,14 @@ CV_eq_new = double(subs(CV_new,[I_phi I_theta I_z V_phi V_theta V_z Ax Ay Px Py 
       
 
 
+% valeur équilibre 
 
+zd_eq=0.015;
+ze_eq=0.015;
+zf_eq=0.015;
+Px_eq=0;
+Py_eq=0; 
+Vx_eq=0;
+Vy_eq=0;
 
+y_eq=[zd_eq ze_eq zf_eq Px_eq Py_eq Vx_eq Vy_eq]';

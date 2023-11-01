@@ -51,7 +51,7 @@ a_e2 =0.018168930792891 * 1.0e+5 ;
 a_e3 =7.043847497815494 * 1.0e+5 ;
 YA = 0;
 YB = XA*cosd(30);
-YC = -XA*cosd(30);
+YC =-XA*cosd(30);
 za= YA*Ax-XA*Ay+Pz;
 zb= YB*Ax-XB*Ay+Pz;
 zc= YC*Ax-XC*Ay+Pz;
@@ -226,5 +226,14 @@ CV_eq_new = double(subs(CV_new,[I_phi I_theta I_z V_phi V_theta V_z Ax Ay Px Py 
       
 
 
+% valeur équilibre 
 
+zd_eq=0.015;
+ze_eq=0.015;
+zf_eq=0.015;
+Px_eq=0;
+Py_eq=0; 
+Vx_eq=0;
+vy_eq=0;
 
+y_eq=[zd_eq ze_eq zf_eq Px_eq ]

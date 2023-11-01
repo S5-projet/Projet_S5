@@ -1,6 +1,6 @@
 clc 
 close all 
-clear all
+
 
 syms Wx_eq Wy_eq % phi' theta'
 syms Vx_eq Vy_eq Vz_eq % x' y' z'
