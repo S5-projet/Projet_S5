@@ -10,7 +10,7 @@ syms Fc(ic,  a_s0, a_s1, a_s2, a_s3, a_e0, a_e1, a_e2, a_e3, b_e1)
 syms Mx(Fb, Fc, Px, Py, XC, XB, ms, g, Ax, Ay)
 syms My(Fa, Fb, Fc, Px, Py, XC, XB, XA, ms,  g)
 syms Fz(g, Fa, Fb, Fc, ms, mp)
-syms Va Vb Vc L Pz I_phi I_theta I_z V_phi V_theta V_z
+syms Va Vb Vc L Pz I_phi I_theta I_z V_phi V_theta V_z Vp Vt Vz 
 syms R L
 
 Ax_des=0;
@@ -26,7 +26,7 @@ ms = 0.008;
 mp = 0.442;          
 rs = 0.0039;           
 Js = 2*ms*rs^2/5; 
-Jx= 1347/1000^2;
+Jx= 1347*1000^2;
 Jy=Jx;
 Yd = 0.080*cosd(30);
 Xd = 0.080*sind(30);
@@ -72,7 +72,7 @@ Fc = ((ic^2+b_e1*abs(ic))*sign(ic))/(a_e0+a_e1*zc+a_e2*zc^2+a_e3*zc^3)-(1/(a_s0+
 
 My = ((-Fa*XA-Fc*XC-Fb*XB+(ms*g*Px))*cosd(Ay))/Jx;
 Mx = ((Fc*YC+Fb*YB-(ms*g*Py))*cosd(Ax))/Jy;
-Fz = g +((Fa+Fb+Fc)/(ms+mp));
+Fz = (Fa + Fb + Fc + mp*g + ms*g) / mp;
 dx = -(ms*g*Ay) / (ms + Js/rs^2);
 dy = (ms*g*Ax) / (ms + Js/rs^2);
 dia= (Va-R*ia)/L;
@@ -123,6 +123,9 @@ PC_eq = double(subs(PC,[ia ib ic Va Vb Vc Ax Ay Px Py Pz],[ia_eq ib_eq ic_eq Va_
 Tdef=[Yd -Xd 1;
       Ye -Xe 1;
       Yf -Xf 1];
+Tdeft=Tdef';
+  
+  
   
 I=eye(4);
 C1=zeros(3,4);
@@ -183,9 +186,9 @@ Fc_new = subs(Fc,[ic],[ic_new]);
 My_new = ((-Fa_new*XA-Fc_new*XC-Fb_new*XB+(ms*g*Px))*cosd(Ay))/Jx;
 Mx_new = ((Fc_new*YC+Fb_new*YB-(ms*g*Py))*cosd(Ax))/Jy;
 Fz_new = (Fa_new + Fb_new + Fc_new + mp*g + ms*g) / mp;
-dia_new= (Va_new-R*ia_new)/L;
-dib_new= (Vb_new-R*ib_new)/L;
-dic_new= (Vc_new-R*ic_new)/L;
+dia_new= (V_phi-(R*I_phi))/L;
+dib_new= (V_theta-(R*I_theta))/L;
+dic_new= (V_z-(R*I_z))/L;
 
 
 I_ptz = U*[ia_eq ib_eq ic_eq]';  
@@ -239,3 +242,23 @@ Vx_eq=0;
 Vy_eq=0;
 
 y_eq=[zd_eq ze_eq zf_eq Px_eq Py_eq Vx_eq Vy_eq]';
+
+
+
+
+A_phi=[0 1 0; PP_eq_new(1,1) 0 PC_eq_new(1,1);0 0 CC_eq_new(1,1)];
+B_phi=[0;0;CV_eq_new(1,1)]';
+A_theta=[0 1 0; PP_eq_new(2,2) 0 PC_eq_new(2,2);0 0 CC_eq_new(2,2)];
+B_theta=[0;0;CV_eq_new(2,2)]';
+A_z=[0 1 0; PP_eq_new(3,3) 0 PC_eq_new(3,3);0 0 CC_eq_new(3,3)];
+B_z=[0;0;CV_eq_new(3,3)]';
+C_dec=[1 0 0];
+D_dec=[0];
+
+A_s=[0 1;0 0];
+B_sx=[0 SP_eq(1,2)]';
+B_sy=[0 SP_eq(2:1)]';
+C_s=eye(2);
+D_s=[0;0];
+
+
