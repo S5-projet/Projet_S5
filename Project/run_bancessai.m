@@ -64,3 +64,12 @@ plot(tsim, Ax_des,'red')
 plot(tsim, Ax_des_Non_Lineaire,'blue')
 
 %trajectoires
+figure
+hold on;
+plot(ynonlineaire(:,7),ynonlineaire(:,8));
+
+figure
+hold on;
+plot(ylineaire(:,4),ylineaire(:,5));
+
+
