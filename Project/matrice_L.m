@@ -104,6 +104,7 @@ PS = [(diff(Mx,Px)) (diff(Mx,Py)) ;
       (diff(My,Px)) (diff(My,Py)) ;
       (diff(Fz,Px)) (diff(Fz,Py))];
 
+PS_eq = double(subs(PS,[ia ib ic Va Vb Vc Ax Ay Px Py Pz],[ia_eq ib_eq ic_eq Va_eq Vb_eq Vc_eq Ax_des Ay_des Px_des Py_des Pz_des])); 
 
 
 CV = [(diff(dia,Va)) (diff(dia,Vb)) (diff(dia,Vc)) ; 
@@ -159,8 +160,8 @@ C=[Tdef C3 C3 C3 C2;
 D = [0];
 
 
-U = [YA YB YC;
-    -XA -XB -XC;
+U = [0 -YB*cos(Ax) -YC*cos(Ax);
+    XA*cos(Ay) XB*cos(Ay) XC*cos(Ay);
      1 1 1];
  
 Uinv= inv(U);
@@ -180,9 +181,9 @@ Fa_new = subs(Fa,[ia],[ia_new]);
 Fb_new = subs(Fb,[ib],[ib_new]);
 Fc_new = subs(Fc,[ic],[ic_new]);
 
-My_new = ((Fa_new*XA-Fc_new*XC-Fb_new*XB)*cosd(Ay));
-Mx_new = ((Fc_new*XC-Fb_new*XB)*cosd(Ax));
-Fz_new = g+((Fa_new+Fb_new+Fc_new)/(mp));
+My_new = ((-Fa_new*XA-Fc_new*XC-Fb_new*XB+(ms*g*Px))*cosd(Ay))/Jx;
+Mx_new = ((Fc_new*YC+Fb_new*YB-(ms*g*Py))*cosd(Ax))/Jy;
+Fz_new = (Fa_new + Fb_new + Fc_new + mp*g + ms*g) / mp;
 dia_new= (Va_new-R*ia_new)/L;
 dib_new= (Vb_new-R*ib_new)/L;
 dic_new= (Vc_new-R*ic_new)/L;
@@ -192,7 +193,7 @@ I_ptz = U*[ia_eq ib_eq ic_eq]';
 V_ptz = U*[Va_eq Vb_eq Vc_eq]';
 IP_eq = I_ptz(1);
 It_eq = I_ptz(2);
-Iz_eq = I_ptz(3);
+Iz_eq = double(I_ptz(3));
 Vp_eq = V_ptz(1);
 Vt_eq = V_ptz(2);
 Vz_eq = V_ptz(3);
