@@ -38,7 +38,7 @@ z_des     = [t_des, [1 1 1 1  1  1 1 1 1]'*.015];
 tfin = 50;
 
 %initialisation
-%bancessai_ini  %faites tous vos calculs de modele ici
+bancessai_ini  %faites tous vos calculs de modele ici
 bancEssaiConstantes
 
 %Calcul des compensateurs
@@ -64,3 +64,25 @@ plot(tsim, Ax_des,'red')
 plot(tsim, Ax_des_Non_Lineaire,'blue')
 
 %trajectoires
+figure(2)
+hold on;
+plot(ynonlineaire(:,7),ynonlineaire(:,8));
+title('Exemple de la trajectoire attendue')
+
+% lez go shawn
+% figure(3)
+% hold on;
+% plot(ynonlineaire1(:,7),ynonlineaire1(:,8));
+% title('Exemple de la trajectoire attendue')
+
+figure(4)
+hold on;
+plot(ylineaire(:,4),ylineaire(:,5));
+title('Trajectoire du système linéaire')
+
+% figure()
+% hold on;
+% plot(ydecouple(:,4),ydecouple(:,5));
+% title('Trajectoire du système découplé')
+
+
