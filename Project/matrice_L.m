@@ -130,25 +130,26 @@ C2=zeros(3,1);
 C3=zeros(3,3);
 B1=zeros(10,3);
 
-A = sym(zeros(13, 13));
+%A = sym(zeros(13, 13));
+A = zeros(13,13);
 revue3x3 = eye(3);
 revue2x2 = eye(2);
 
 % Insérez les petites matrices à des emplacements spécifiques dans la grande matrice
 A(4:6, 1:3) = PP_eq; 
 A(1:3, 4:6) = revue3x3;
-A(4:6, 7:8) = PS; 
-A(4:6, 11:13) = PC;
+A(4:6, 7:8) = PS_eq; 
+A(4:6, 11:13) = PC_eq;
 A(7:8, 9:10) = revue2x2; 
-A(9:10, 1:3) = SP;
-A(11:13, 11:13) = CC;
+A(9:10, 1:3) = SP_eq;
+A(11:13, 11:13) = CC_eq;
 
 % Affichez la matrice X dans la console en utilisant la fonction disp
 %disp(A);
 
 
 B=[B1
-   CV];
+   CV_eq];
 
 C=[Tdef C3 C3 C3 C2;
    0 0 0 0 0 0 1 0 0 0 0 0 0
@@ -156,7 +157,9 @@ C=[Tdef C3 C3 C3 C2;
    0 0 0 0 0 0 0 0 1 0 0 0 0
    0 0 0 0 0 0 0 0 0 1 0 0 0];
 
-D = [0];
+D = [0 0 0 0 0 0 0;
+     0 0 0 0 0 0 0;
+     0 0 0 0 0 0 0]';
 
 
 U = [0 -YB*cos(Ax) -YC*cos(Ax);
