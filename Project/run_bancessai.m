@@ -64,12 +64,25 @@ plot(tsim, Ax_des,'red')
 plot(tsim, Ax_des_Non_Lineaire,'blue')
 
 %trajectoires
-figure
+figure(2)
 hold on;
 plot(ynonlineaire(:,7),ynonlineaire(:,8));
+title('Exemple de la trajectoire attendue')
 
-figure
+% lez go shawn
+% figure(3)
+% hold on;
+% plot(ynonlineaire1(:,7),ynonlineaire1(:,8));
+% title('Exemple de la trajectoire attendue')
+
+figure(4)
 hold on;
 plot(ylineaire(:,4),ylineaire(:,5));
+title('Trajectoire du système linéaire')
+
+% figure()
+% hold on;
+% plot(ydecouple(:,4),ydecouple(:,5));
+% title('Trajectoire du système découplé')
 
 
