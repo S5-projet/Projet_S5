@@ -28,6 +28,7 @@ ySeq = 0.000;      % Position y de la sphère à l'équilibre en metres
 Axeq = 0;               %en degres
 Ayeq = 0;               %en degres
 Pzeq = .015;            %en metres
+Value_initial = 1;
 
 %Exemple de trajectoire
 t_des     = [0:1:8]'*5;
