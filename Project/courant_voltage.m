@@ -66,6 +66,9 @@ Va_eq = R*ia_eq;
 Vb_eq = R*ib_eq;
 Vc_eq = R*ic_eq;
 
+Va_eq_simu = double(Va_eq);%Besoin pour simulink (on peux pas faire de simulation avec des variables symboliques)
+Vb_eq_simu = double(Vb_eq);%"
+Vc_eq_simu = double(Vc_eq);%"
 
 
 

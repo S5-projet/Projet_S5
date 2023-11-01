@@ -134,7 +134,7 @@ revue3x3 = eye(3);
 revue2x2 = eye(2);
 
 % Insérez les petites matrices à des emplacements spécifiques dans la grande matrice
-A(4:6, 1:3) = PP; 
+A(4:6, 1:3) = PP_eq; 
 A(1:3, 4:6) = revue3x3;
 A(4:6, 7:8) = PS; 
 A(4:6, 11:13) = PC;
@@ -236,5 +236,10 @@ Px_eq=0;
 Py_eq=0; 
 Vx_eq=0;
 Vy_eq=0;
+
+Px_eq_simu = double(Px_eq); % Besoin pour simulink (on peux pas faire de simulation avec des variables symboliques)
+Py_eq_simu = double(Py_eq); % "
+
+
 
 y_eq=[zd_eq ze_eq zf_eq Px_eq Py_eq Vx_eq Vy_eq]';
