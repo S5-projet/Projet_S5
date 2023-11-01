@@ -1,7 +1,6 @@
 clc 
 close all 
 
-
 syms Wx_eq Wy_eq % phi' theta'
 syms Vx_eq Vy_eq Vz_eq % x' y' z'
 syms Ax Pz Px Py ia_eq ib_eq ic_eq Ay 

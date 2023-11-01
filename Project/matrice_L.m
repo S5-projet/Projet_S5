@@ -2,7 +2,6 @@ close all
 clc
 
 
-
 syms Wx_eq Wy_eq % phi' theta'
 syms Vx_eq Vy_eq Vz_eq % x' y' z'
 syms Fa(ia,  a_s0, a_s1, a_s2, a_s3, a_e0, a_e1, a_e2, a_e3, b_e1) 
