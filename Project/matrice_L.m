@@ -1,6 +1,5 @@
 close all
 clc
-clear all
 
 
 syms Wx_eq Wy_eq % phi' theta'
