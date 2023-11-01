@@ -158,8 +158,8 @@ C=[Tdef C3 C3 C3 C2;
 D = [0];
 
 
-U = [YA YB YC;
-    -XA -XB -XC;
+U = [0 -YB*cos(Ax) -YC*cos(Ax);
+    XA*cos(Ay) XB*cos(Ay) XC*cos(Ay);
      1 1 1];
  
 Uinv= inv(U);
@@ -179,9 +179,9 @@ Fa_new = subs(Fa,[ia],[ia_new]);
 Fb_new = subs(Fb,[ib],[ib_new]);
 Fc_new = subs(Fc,[ic],[ic_new]);
 
-My_new = ((Fa_new*XA-Fc_new*XC-Fb_new*XB)*cosd(Ay));
-Mx_new = ((Fc_new*XC-Fb_new*XB)*cosd(Ax));
-Fz_new = g+((Fa_new+Fb_new+Fc_new)/(mp));
+My_new = ((-Fa_new*XA-Fc_new*XC-Fb_new*XB+(ms*g*Px))*cosd(Ay))/Jx;
+Mx_new = ((Fc_new*YC+Fb_new*YB-(ms*g*Py))*cosd(Ax))/Jy;
+Fz_new = (Fa_new + Fb_new + Fc_new + mp*g + ms*g) / mp;
 dia_new= (Va_new-R*ia_new)/L;
 dib_new= (Vb_new-R*ib_new)/L;
 dic_new= (Vc_new-R*ic_new)/L;

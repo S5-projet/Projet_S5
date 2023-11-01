@@ -38,7 +38,7 @@ z_des     = [t_des, [1 1 1 1  1  1 1 1 1]'*.015];
 tfin = 50;
 
 %initialisation
-bancessai_ini  %faites tous vos calculs de modele ici
+%bancessai_ini  %faites tous vos calculs de modele ici
 bancEssaiConstantes
 
 %Calcul des compensateurs
