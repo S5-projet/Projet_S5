@@ -49,12 +49,12 @@ zc= YC*Ax-XC*Ay+Pz;
 ze= Ye*Ax-Xe*Ay+Pz;
 zd= Yd*Ax-Xd*Ay+Pz;
 zf= Yf*Ax-Xf*Ay+Pz;
-ia_eq=-0.14746;
-ib_eq=-0.14746;
-ic_eq=-0.14746;
-Va_eq =-0.5309;
-Vb_eq =-0.5309;
-Vc_eq =-0.5309;
+ia_eq=0.084211;
+ib_eq=0.084211;
+ic_eq=0.084211;
+Va_eq =0.30316;
+Vb_eq =0.30316;
+Vc_eq =0.30316;
 
 
 
