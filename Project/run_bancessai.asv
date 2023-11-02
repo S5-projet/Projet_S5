@@ -19,12 +19,12 @@ close all
 clear all
 clc
 
-% Position ‡ l'Èquilibre de la sphËre (pour tests statiques)
-sig = 1.0;         % PrÈsence (1) ou non (0) de la sphËre
-xSeq = 0.000;      % Position x de la sphËre ‡ l'Èquilibre en metres
-ySeq = 0.000;      % Position y de la sphËre ‡ l'Èquilibre en metres
+% Position √† l'√©quilibre de la sph√®re (pour tests statiques)
+sig = 1.0;         % Pr√©sence (1) ou non (0) de la sph√®re
+xSeq = 0.000;      % Position x de la sph√®re √† l'√©quilibre en metres
+ySeq = 0.000;      % Position y de la sph√®re √† l'√©quilibre en metres
 
-%Point d'opÈration choisi pour la plaque
+%Point d'op√©ration choisi pour la plaque
 Axeq = 0;               %en degres
 Ayeq = 0;               %en degres
 Pzeq = .015;            %en metres
@@ -53,25 +53,32 @@ sim('DYNctl_ver4_etud_obfusc')
 
 %trajectoires
 figure(1)
+axis([-0.06,0.06,-0.06,0.06);
 subplot(1,2,1)
 hold on;
-axis([-0.06 0.06 -0.06 0.06]);
 plot(ynonlineaire(:,7),ynonlineaire(:,8));
 title('Trajectoire attendue')
 subplot(1,2,2)
-axis([-0.06 0.06 -0.06 0.06]);
 plot(ynonlineaire1(:,8),ynonlineaire1(:,7));
-title('Trajectoire effectuÈ')
-hold off;
+title('Trajectoire effectu√©')
+
+figure(2)
+subplot(1,2,1)
+hold on;
+plot(ynonlineaire(:,1),ynonlineaire(:,2));
+title('Angle attendue')
+subplot(1,2,2)
+plot(ynonlineaire1(:,1),ynonlineaire1(:,2));
+title('Angle effectu√©')
 
 figure(4)
 hold on;
 plot(ylineaire(:,4),ylineaire(:,5));
-title('Trajectoire du systËme linÈaire')
+title('Trajectoire du syst√®me lin√©aire')
 
 % figure()
 % hold on;
 % plot(ydecouple(:,4),ydecouple(:,5));
-% title('Trajectoire du systËme dÈcouplÈ')
+% title('Trajectoire du syst√®me d√©coupl√©')
 
 

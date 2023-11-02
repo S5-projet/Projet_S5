@@ -4,7 +4,6 @@
 % Remise à zéro lors de l'exécution du code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc;
-clear all;
 close all;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -19,8 +18,8 @@ format long;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chargement des données des capteurs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-load('C:\Users\utilisateur\Documents\S5\Projet\Fe_attraction.mat');
-load('C:\Users\utilisateur\Documents\S5\Projet\Fs.mat');
+load('Fe_attraction.mat');
+load('Fs.mat');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
