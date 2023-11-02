@@ -18,11 +18,9 @@ format long;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chargement des données des capteurs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%load('C:\Users\utilisateur\Documents\S5\Projet\Fe_attraction.mat');
-%load('C:\Users\utilisateur\Documents\S5\Projet\Fs.mat');
+load('Fe_attraction.mat');
+load('Fs.mat');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-load('C:\Users\fadd\OneDrive - CEGEP SAINT-JEAN-SUR-RICHELIEU\Documents\Universite\S5\PROJA\Fe_attraction.mat')
-load('C:\Users\fadd\OneDrive - CEGEP SAINT-JEAN-SUR-RICHELIEU\Documents\Universite\S5\PROJA\Fs.mat')
 
 
 %% Coefficients de Fs

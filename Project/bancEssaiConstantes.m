@@ -19,6 +19,7 @@ g   = 9.81;
 z_range  = 22.2e-03;            % m
 zr_comb = [0 0 0; 0 0 1; 0 1 0; 0 1 1; 1 0 0; 1 0 1; 1 1 0; 1 1 1]'*z_range;
 
+be1 = 13.029359254409743;
 
 % Distance 2D du centre des aimants de sustentation au centre de la plaque
 rABC = 95.20e-03;     % m
