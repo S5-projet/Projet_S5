@@ -123,7 +123,10 @@ PC_eq = double(subs(PC,[ia ib ic Va Vb Vc Ax Ay Px Py Pz],[ia_eq ib_eq ic_eq Va_
 Tdef=[Yd -Xd 1;
       Ye -Xe 1;
       Yf -Xf 1];
+
 Tdeft=Tdef';
+
+Tdeft1=inv(Tdeft);
   
   
   
@@ -166,9 +169,9 @@ D = [0 0 0 0 0 0 0;
 
 Jx1= 1347*1000^2;
 Jy1=Jx1;
-U_u = [0 -YB*cos(Ax) -YC*cos(Ax);
-    XA*cos(Ay) XB*cos(Ay) XC*cos(Ay);
-     1 1 1];
+U_u = [0 YB YC;
+      -XA -XB -XC;
+      1 1 1];
 
 U_U_simu =double(subs(U_u,[Ax Ay],[Ax_des Ay_des]));
  
@@ -189,8 +192,8 @@ Fa_new = subs(Fa,[ia],[ia_new]);
 Fb_new = subs(Fb,[ib],[ib_new]);
 Fc_new = subs(Fc,[ic],[ic_new]);
 
-My_new = ((-Fa_new*XA-Fc_new*XC-Fb_new*XB+(ms*g*Px))*cosd(Ay))/Jx1;
-Mx_new = ((Fc_new*YC+Fb_new*YB-(ms*g*Py))*cosd(Ax))/Jy1;
+My_new = ((-Fa_new*XA-Fc_new*XC-Fb_new*XB+(ms*g*Px))*cosd(Ay))/Jx;
+Mx_new = ((Fc_new*YC+Fb_new*YB-(ms*g*Py))*cosd(Ax))/Jy;
 Fz_new = (Fa_new + Fb_new + Fc_new + mp*g + ms*g) / (mp);
 dia_new= (V_phi-(R*I_phi))/L;
 dib_new= (V_theta-(R*I_theta))/L;
@@ -206,7 +209,7 @@ Vp_eq = V_ptz(1);
 Vt_eq = V_ptz(2);
 Vz_eq = V_ptz(3);
 
-
+V_decoup=[Vp_eq Vt_eq Vz_eq]';
 
 PP_new = [diff(Mx_new,Ax) diff(Mx_new,Ay) diff(Mx_new,Pz);
           diff(My_new,Ax) diff(My_new,Ay) diff(My_new,Pz);
