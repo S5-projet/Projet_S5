@@ -82,7 +82,7 @@ title('Trajectoire du système linéaire')
 
 figure()
  hold on;
- plot(ydecouple(:,4),ydecouple(:,5));
+ plot(yDecouple(:,4),yDecouple(:,5));
  title('Trajectoire du système découplé')
 
 

@@ -191,7 +191,7 @@ Fc_new = subs(Fc,[ic],[ic_new]);
 
 My_new = ((-Fa_new*XA-Fc_new*XC-Fb_new*XB+(ms*g*Px))*cosd(Ay))/Jx1;
 Mx_new = ((Fc_new*YC+Fb_new*YB-(ms*g*Py))*cosd(Ax))/Jy1;
-Fz_new = (Fa_new + Fb_new + Fc_new + mp*g + ms*g) / (mp*7);
+Fz_new = (Fa_new + Fb_new + Fc_new + mp*g + ms*g) / (mp);
 dia_new= (V_phi-(R*I_phi))/L;
 dib_new= (V_theta-(R*I_theta))/L;
 dic_new= (V_z-(R*I_z))/L;
