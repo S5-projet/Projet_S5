@@ -80,9 +80,9 @@ hold on;
 plot(ylineaire(:,4),ylineaire(:,5));
 title('Trajectoire du système linéaire')
 
-% figure()
-% hold on;
-% plot(ydecouple(:,4),ydecouple(:,5));
-% title('Trajectoire du système découplé')
+figure()
+ hold on;
+ plot(ydecouple(:,4),ydecouple(:,5));
+ title('Trajectoire du système découplé')
 
 

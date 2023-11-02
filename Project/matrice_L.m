@@ -26,7 +26,7 @@ ms = 0.008;
 mp = 0.442;          
 rs = 0.0039;           
 Js = 2*ms*rs^2/5; 
-Jx= 1347*1000^2;
+Jx= 1347/1000^2;
 Jy=Jx;
 Yd = 0.080*cosd(30);
 Xd = 0.080*sind(30);
@@ -164,12 +164,15 @@ D = [0 0 0 0 0 0 0;
      0 0 0 0 0 0 0;
      0 0 0 0 0 0 0]';
 
-
-U = [0 -YB*cos(Ax) -YC*cos(Ax);
+Jx1= 1347*1000^2;
+Jy1=Jx1;
+U_u = [0 -YB*cos(Ax) -YC*cos(Ax);
     XA*cos(Ay) XB*cos(Ay) XC*cos(Ay);
      1 1 1];
+
+U_U_simu =double(subs(U_u,[Ax Ay],[Ax_des Ay_des]));
  
-Uinv= inv(U);
+Uinv= inv(U_u);
 
 I = [I_phi; I_theta; I_z];
 V = [V_phi; V_theta; V_z];
@@ -186,16 +189,16 @@ Fa_new = subs(Fa,[ia],[ia_new]);
 Fb_new = subs(Fb,[ib],[ib_new]);
 Fc_new = subs(Fc,[ic],[ic_new]);
 
-My_new = ((-Fa_new*XA-Fc_new*XC-Fb_new*XB+(ms*g*Px))*cosd(Ay))/Jx;
-Mx_new = ((Fc_new*YC+Fb_new*YB-(ms*g*Py))*cosd(Ax))/Jy;
-Fz_new = (Fa_new + Fb_new + Fc_new + mp*g + ms*g) / mp;
+My_new = ((-Fa_new*XA-Fc_new*XC-Fb_new*XB+(ms*g*Px))*cosd(Ay))/Jx1;
+Mx_new = ((Fc_new*YC+Fb_new*YB-(ms*g*Py))*cosd(Ax))/Jy1;
+Fz_new = (Fa_new + Fb_new + Fc_new + mp*g + ms*g) / (mp*7);
 dia_new= (V_phi-(R*I_phi))/L;
 dib_new= (V_theta-(R*I_theta))/L;
 dic_new= (V_z-(R*I_z))/L;
 
 
-I_ptz = U*[ia_eq ib_eq ic_eq]';  
-V_ptz = U*[Va_eq Vb_eq Vc_eq]';
+I_ptz = U_u*[ia_eq ib_eq ic_eq]';  
+V_ptz = U_u*[Va_eq Vb_eq Vc_eq]';
 IP_eq = I_ptz(1);
 It_eq = I_ptz(2);
 Iz_eq = double(I_ptz(3));
@@ -255,11 +258,11 @@ y_eq=[zd_eq ze_eq zf_eq Px_eq Py_eq Vx_eq Vy_eq]';
 
 
 A_phi=[0 1 0; PP_eq_new(1,1) 0 PC_eq_new(1,1);0 0 CC_eq_new(1,1)];
-B_phi=[0;0;CV_eq_new(1,1)]';
+B_phi=[0;0;CV_eq_new(1,1)];
 A_theta=[0 1 0; PP_eq_new(2,2) 0 PC_eq_new(2,2);0 0 CC_eq_new(2,2)];
-B_theta=[0;0;CV_eq_new(2,2)]';
+B_theta=[0;0;CV_eq_new(2,2)];
 A_z=[0 1 0; PP_eq_new(3,3) 0 PC_eq_new(3,3);0 0 CC_eq_new(3,3)];
-B_z=[0;0;CV_eq_new(3,3)]';
+B_z=[0;0;CV_eq_new(3,3)];
 C_dec=[1 0 0];
 D_dec=[0];
 
