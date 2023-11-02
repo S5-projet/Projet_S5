@@ -91,7 +91,7 @@ Jz = 2329e-06;  % kg m^2
 mtot = mP + sig*mS;   % kg - mase totale plaque + sphère
 
 % Simulation
-Vmax = 16.0;
+Vmax = 22.0;
 
 % Paramètres électriques des actionneurs
 % Données mises à jour le 10 juillet 2015
