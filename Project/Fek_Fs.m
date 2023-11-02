@@ -4,7 +4,6 @@
 % Remise à zéro lors de l'exécution du code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc;
-clear all;
 close all;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -19,9 +18,11 @@ format long;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chargement des données des capteurs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-load('C:\Users\utilisateur\Documents\S5\Projet\Fe_attraction.mat');
-load('C:\Users\utilisateur\Documents\S5\Projet\Fs.mat');
+%load('C:\Users\utilisateur\Documents\S5\Projet\Fe_attraction.mat');
+%load('C:\Users\utilisateur\Documents\S5\Projet\Fs.mat');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+load('C:\Users\fadd\OneDrive - CEGEP SAINT-JEAN-SUR-RICHELIEU\Documents\Universite\S5\PROJA\Fe_attraction.mat')
+load('C:\Users\fadd\OneDrive - CEGEP SAINT-JEAN-SUR-RICHELIEU\Documents\Universite\S5\PROJA\Fs.mat')
 
 
 %% Coefficients de Fs
