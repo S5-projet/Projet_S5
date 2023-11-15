@@ -125,6 +125,8 @@ Tdef=[Yd -Xd 1;
       Yf -Xf 1];
 
 Tdeft=Tdef';
+
+Tdeft1=inv(Tdeft);
   
   
   
@@ -167,8 +169,6 @@ D = [0 0 0 0 0 0 0;
 
 Jx1= 1347*1000^2;
 Jy1=Jx1;
-U_u = [0 -YB*cos(Ax) -YC*cos(Ax);
-      XA*cos(Ay) XB*cos(Ay) XC*cos(Ay);
       1 1 1];
 
 U_U_simu =double(subs(U_u,[Ax Ay],[Ax_des Ay_des]));
@@ -207,7 +207,7 @@ Vp_eq = V_ptz(1);
 Vt_eq = V_ptz(2);
 Vz_eq = V_ptz(3);
 
-
+V_decoup=[Vp_eq Vt_eq Vz_eq]';
 
 PP_new = [diff(Mx_new,Ax) diff(Mx_new,Ay) diff(Mx_new,Pz);
           diff(My_new,Ax) diff(My_new,Ay) diff(My_new,Pz);
@@ -273,4 +273,40 @@ B_sy=[0 SP_eq(2,1)]';
 C_s=eye(2);
 D_s=[0;0];
 
+[num_FT_phi, den_FT_phi] = ss2tf(A_phi, B_phi, C_dec, D_dec);
+[num_FT_theta, den_FT_theta] = ss2tf(A_theta, B_theta, C_dec, D_dec);
+[num_FT_z, den_FT_z] = ss2tf(A_z, B_z, C_dec, D_dec)
 
+[num_FT_sx, den_FT_sx] = ss2tf(A_s, B_sx, C_s, D_s)
+[num_FT_sy, den_FT_sy] = ss2tf(A_s, B_sy, C_s, D_s);
+
+FT_phi = tf(num_FT_phi, den_FT_phi)
+FT_theta = tf(num_FT_theta, den_FT_theta)
+FT_z = tf(num_FT_z, den_FT_z)
+
+FT_sx_p = tf(num_FT_sx(1,:), den_FT_sx)
+FT_sx_v = tf(num_FT_sx(2,:), den_FT_sx)
+
+FT_sy_p = tf(num_FT_sy(1,:), den_FT_sy)
+FT_sy_v = tf(num_FT_sy(2,:), den_FT_sy)
+
+poles_FT_phi = 
+zeros_FT_phi = 
+
+poles_FT_theta = 
+zeros_FT_theta = 
+
+poles_FT_z = 
+zeros_FT_z = 
+
+poles_FT_sx_p = 
+zeros_FT_sx_p = 
+
+poles_FT_sx_v = 
+zeros_FT_sx_v = 
+
+poles_FT_sy_p
+zeros_FT_sy_p
+
+poles_FT_sy_v
+zeros_FT_sy_v

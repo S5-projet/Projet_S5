@@ -275,4 +275,61 @@ B_sy=[0 SP_eq(2,1)]';
 C_s=eye(2);
 D_s=[0;0];
 
+[num_FT_phi, den_FT_phi] = ss2tf(A_phi, B_phi, C_dec, D_dec);
+[num_FT_theta, den_FT_theta] = ss2tf(A_theta, B_theta, C_dec, D_dec);
+[num_FT_z, den_FT_z] = ss2tf(A_z, B_z, C_dec, D_dec);
 
+[num_FT_sx, den_FT_sx] = ss2tf(A_s, B_sx, C_s, D_s);
+[num_FT_sy, den_FT_sy] = ss2tf(A_s, B_sy, C_s, D_s);
+
+FT_phi = tf(num_FT_phi, den_FT_phi);
+FT_theta = tf(num_FT_theta, den_FT_theta);
+FT_z = tf(num_FT_z, den_FT_z);
+
+FT_sx_p = tf(num_FT_sx(1,:), den_FT_sx);
+FT_sx_v = tf(num_FT_sx(2,:), den_FT_sx);
+
+FT_sy_p = tf(num_FT_sy(1,:), den_FT_sy);
+FT_sy_v = tf(num_FT_sy(2,:), den_FT_sy);
+
+valeurs_propres_FT_phi = eig(A_phi);
+poles_FT_phi = roots(den_FT_phi);
+zeros_FT_phi = roots(num_FT_phi);
+figure("Name", 'Lieu des racines FT Phi')
+rlocus(FT_phi);
+
+valeurs_propres_FT_theta = eig(A_theta);
+poles_FT_theta = roots(den_FT_sx);
+zeros_FT_theta = roots(num_FT_theta);
+figure("Name", 'Lieu des racines FT Theta')
+rlocus(FT_theta);
+
+valeurs_propres_FT_z = eig(A_z);
+poles_FT_z = roots(den_FT_z);
+zeros_FT_z = roots(num_FT_z);
+figure("Name", 'Lieu des racines FT Z')
+rlocus(FT_z);
+
+valeurs_propres_FT_sx_p = eig(A_s);
+poles_FT_sx_p = roots(den_FT_sx);
+zeros_FT_sx_p = roots(num_FT_sx(1,:));
+figure("Name", 'Lieu des racines FT sx p')
+rlocus(FT_sx_p);
+
+valeurs_propres_FT_sx_v = eig(A_s);
+poles_FT_sx_v = roots(den_FT_sx);
+zeros_FT_sx_v = roots(num_FT_sx(2,:));
+figure("Name", 'Lieu des racines FT sx v')
+rlocus(FT_sx_v);
+
+valeurs_propres_sy_p = eig(A_s);
+poles_FT_sy_p = roots(den_FT_sy);
+zeros_FT_sy_p = roots(num_FT_sy(1,:));
+figure("Name", 'Lieu des racines FT sy p')
+rlocus(FT_sy_p);
+
+valeurs_propres_sy_v = eig(A_s);
+poles_FT_sy_v = roots(den_FT_sy);
+zeros_FT_sy_v = roots(num_FT_sy(2,:));
+figure("Name",' Lieu des racines FT sy v')
+rlocus(FT_sy_v);
