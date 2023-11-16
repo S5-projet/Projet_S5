@@ -70,6 +70,69 @@ Fa = ((ia^2+b_e1*abs(ia))*sign(ia))/(a_e0+a_e1*za+a_e2*za^2+a_e3*za^3)-(1/(a_s0+
 Fb = ((ib^2+b_e1*abs(ib))*sign(ib))/(a_e0+a_e1*zb+a_e2*zb^2+a_e3*zb^3)-(1/(a_s0+a_s1*zb+a_s2*zb^2+a_s3*zb^3+a_s4*zb^4+a_s5*zb^5+a_s6*zb^6));
 Fc = ((ic^2+b_e1*abs(ic))*sign(ic))/(a_e0+a_e1*zc+a_e2*zc^2+a_e3*zc^3)-(1/(a_s0+a_s1*zc+a_s2*zc^2+a_s3*zc^3+a_s4*zc^4+a_s5*zc^5+a_s6*zc^6));
 
+
+
+
+%% Linéarisation de la force Fa
+
+ia_affichage = (-50:0.01:50);
+fa_equation_nonlineaire_des = (subs(Fa,[Ax Ay Px Py Pz],[Ax_des Ay_des Px_des Py_des Pz_des]));
+fa_Equation_nonlineaire = double(subs(fa_equation_nonlineaire_des,[ia],[ia_affichage]));
+fa_b = (subs(Fa,[ia Ax Ay Px Py Pz],[ia_eq Ax_des Ay_des Px_des Py_des Pz_des]));
+fa_deriv_Fa_fct_ia = diff(Fa,ia);
+fa_Equation_linerise = (subs(fa_deriv_Fa_fct_ia,[ia Ax Ay Px Py Pz],[ia_eq Ax_des Ay_des Px_des Py_des Pz_des]));
+fa_delta_ia = (-50:0.01:50)- ia_eq;
+fa_Equation_lineariser = (fa_Equation_linerise .* fa_delta_ia) + fa_b;
+
+figure(1)
+plot(fa_delta_ia,fa_Equation_lineariser)
+hold on;
+plot(ia_affichage,fa_Equation_nonlineaire);
+xlabel('Courant');
+ylabel('Force appliquée par l''actionneur');
+title('Modèle des actionneurs linéarisé vs non-linéarisé');
+legend('Linéarisé','Non-Linéarisé');
+
+%% Linéarisation de la force Fb
+
+ib_affichage = (-50:0.01:50);
+fb_equation_nonlineaire_des = (subs(Fb,[Ax Ay Px Py Pz],[Ax_des Ay_des Px_des Py_des Pz_des]));
+fb_Equation_nonlineaire = double(subs(fa_equation_nonlineaire_des,[ia],[ib_affichage]));
+fb_b = (subs(Fa,[ia Ax Ay Px Py Pz],[ia_eq Ax_des Ay_des Px_des Py_des Pz_des]));
+fb_deriv_Fa_fct_ia = diff(Fa,ia);
+fb_Equation_linerise = (subs(fb_deriv_Fb_fct_ib,[ib Ax Ay Px Py Pz],[ib_eq Ax_des Ay_des Px_des Py_des Pz_des]));
+fb_delta_ib = (-50:0.01:50)- ib_eq;
+fb_Equation_lineariser = (fb_Equation_linerise .* fb_delta_ia) + fb_b;
+
+figure(1)
+plot(fb_delta_ia,fb_Equation_lineariser)
+hold on;
+plot(ib_affichage,fb_Equation_nonlineaire);
+xlabel('Courant');
+ylabel('Force appliquée par l''actionneur');
+title('Modèle des actionneurs linéarisé vs non-linéarisé');
+legend('Linéarisé','Non-Linéarisé');
+
+%% Linéarisation de la force Fc
+fa_equation_nonlineaire_des = (subs(Fa,[Ax Ay Px Py Pz],[Ax_des Ay_des Px_des Py_des Pz_des]));
+fa_Equation_nonlineaire = double(subs(fa_equation_nonlineaire_des,[ia],[ia_affichage]));
+fa_b = (subs(Fa,[ia Ax Ay Px Py Pz],[ia_eq Ax_des Ay_des Px_des Py_des Pz_des]));
+fa_deriv_Fa_fct_ia = diff(Fa,ia);
+fa_Equation_linerise = (subs(fa_deriv_Fa_fct_ia,[ia Ax Ay Px Py Pz],[ia_eq Ax_des Ay_des Px_des Py_des Pz_des]));
+fa_delta_ia = (-50:0.01:50)- ia_eq;
+fa_Equation_lineariser = (fa_Equation_linerise .* fa_delta_ia) + fa_b;
+
+figure(1)
+plot(fa_delta_ia,fa_Equation_lineariser)
+hold on;
+plot(ia_affichage,fa_Equation_nonlineaire);
+xlabel('Courant');
+ylabel('Force appliquée par l''actionneur');
+title('Modèle des actionneurs linéarisé vs non-linéarisé');
+legend('Linéarisé','Non-Linéarisé');
+
+%%
+
 My = ((-Fa*XA-Fc*XC-Fb*XB+(ms*g*Px))*cosd(Ay))/Jx;
 Mx = ((Fc*YC+Fb*YB-(ms*g*Py))*cosd(Ax))/Jy;
 Fz = (Fa + Fb + Fc + mp*g + ms*g) / mp;
@@ -125,6 +188,8 @@ Tdef=[Yd -Xd 1;
       Yf -Xf 1];
 
 Tdeft=Tdef';
+
+Tdeft1=inv(Tdeft);
   
   
   
@@ -167,8 +232,8 @@ D = [0 0 0 0 0 0 0;
 
 Jx1= 1347*1000^2;
 Jy1=Jx1;
-U_u = [0 -YB*cos(Ax) -YC*cos(Ax);
-      XA*cos(Ay) XB*cos(Ay) XC*cos(Ay);
+U_u = [0 YB YC;
+      -XA -XB -XC;
       1 1 1];
 
 U_U_simu =double(subs(U_u,[Ax Ay],[Ax_des Ay_des]));
@@ -207,7 +272,7 @@ Vp_eq = V_ptz(1);
 Vt_eq = V_ptz(2);
 Vz_eq = V_ptz(3);
 
-
+V_decoup=[Vp_eq Vt_eq Vz_eq]';
 
 PP_new = [diff(Mx_new,Ax) diff(Mx_new,Ay) diff(Mx_new,Pz);
           diff(My_new,Ax) diff(My_new,Ay) diff(My_new,Pz);
