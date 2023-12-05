@@ -64,22 +64,21 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
     % Newton-Raphson
     
     
-    fn(1)=0;
+    fn=;
     an=x(1);
     X(1)=an;
     it=0;
     for i=1:O
-        bn = an + 0.001;
+        bn = an + dl;
         it=0;
         tol=1e-08;
     
-        while abs(fn) > tol
+        while abs(fn) > tol && it < 1000
             xn = linspace(an, bn, M);
             yd= polyval(Pi_d,xn);
             g= sqrt(1+(yd).^2);
             dn= g(end);
             h1=(xn(2)-xn(1));
-            %fn=(g(1)+g(M)+4*sum(g(2:2:M-1))+2*sum(g(3:2:M-1)))*h1/3;
             fn = (g(1) + g(M) + 2*sum(g(2:M-1)))*h1/2;
             bn = bn-((fn-dl)/dn);
             it=it+1;
@@ -87,10 +86,10 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
 
         X(i)=bn;
         an = bn;
-        end
-    Y = polyval(flip(Pi),X)
+    end
+    Y = polyval(flip(Pi),X);
     disp(it)
 end 
  
-% dl = racine xn^2+ y(xn)^2
+
 
