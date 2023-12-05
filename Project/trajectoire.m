@@ -1,8 +1,9 @@
 clc 
 close all 
 clear all
-x=[0 1 7 3 3 2 8]';
-y=[0 1 2 3 4 5 6]';
+x=[0 1 7 3 3 2 8]'
+y=[0 1 2 3 4 5 6]'
+
 v= 0.5;
 ts= 0.04;
 
@@ -64,16 +65,16 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
     % Newton-Raphson
     
     
-    fn(1)=0;
+    fn=1000;
     an=x(1);
     X(1)=an;
     it=0;
     for i=1:O
-        bn = an + 0.001;
+        bn = an + dl;
         it=0;
         tol=1e-08;
     
-        while abs(fn) > tol
+        while abs(fn) > tol && it < 1000
             xn = linspace(an, bn, M);
             yd= polyval(Pi_d,xn);
             g= sqrt(1+(yd).^2);
@@ -83,12 +84,17 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
             bn = bn-((fn-dl)/dn);
             it=it+1;
         end 
-
         X(i)=bn;
         an = bn;
-        end
-    Y = polyval(flip(Pi),X)
-    disp(it)
+    end
+    Y = polyval(flip(Pi),X);
+    
+    figure
+    %plot(X, Y)
+    hold on
+    plot(x',y')
+    
+
 end 
  
 
