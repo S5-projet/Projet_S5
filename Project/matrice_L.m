@@ -84,14 +84,14 @@ fa_Equation_linerise = (subs(fa_deriv_Fa_fct_ia,[ia Ax Ay Px Py Pz],[ia_eq Ax_de
 fa_delta_ia = (-50:0.01:50)- ia_eq;
 fa_Equation_lineariser = (fa_Equation_linerise .* fa_delta_ia) + fa_b;
 
-figure(1)
-plot(fa_delta_ia,fa_Equation_lineariser)
-hold on;
-plot(ia_affichage,fa_Equation_nonlineaire);
-xlabel('Courant');
-ylabel('Force appliquée par l''actionneur');
-title('Modèle des actionneurs linéarisé vs non-linéarisé');
-legend('Linéarisé','Non-Linéarisé');
+% figure(1)
+% plot(fa_delta_ia,fa_Equation_lineariser)
+% hold on;
+% plot(ia_affichage,fa_Equation_nonlineaire);
+% xlabel('Courant');
+% ylabel('Force appliquée par l''actionneur');
+% title('Modèle des actionneurs linéarisé vs non-linéarisé');
+% legend('Linéarisé','Non-Linéarisé');
 
 %%
 
@@ -317,44 +317,44 @@ FT_sx_v = tf(num_FT_sx(2,:), den_FT_sx);
 FT_sy_p = tf(num_FT_sy(1,:), den_FT_sy);
 FT_sy_v = tf(num_FT_sy(2,:), den_FT_sy);
 
-valeurs_propres_FT_phi = eig(A_phi);
-poles_FT_phi = roots(den_FT_phi);
-zeros_FT_phi = roots(num_FT_phi);
-figure("Name", 'Lieu des racines FT Phi')
-rlocus(FT_phi);
-
-valeurs_propres_FT_theta = eig(A_theta);
-poles_FT_theta = roots(den_FT_sx);
-zeros_FT_theta = roots(num_FT_theta);
-figure("Name", 'Lieu des racines FT Theta')
-rlocus(FT_theta);
-
-valeurs_propres_FT_z = eig(A_z);
-poles_FT_z = roots(den_FT_z);
-zeros_FT_z = roots(num_FT_z);
-figure("Name", 'Lieu des racines FT Z')
-rlocus(FT_z);
-
-valeurs_propres_FT_sx_p = eig(A_s);
-poles_FT_sx_p = roots(den_FT_sx);
-zeros_FT_sx_p = roots(num_FT_sx(1,:));
-figure("Name", 'Lieu des racines FT sx p')
-rlocus(FT_sx_p);
-
-valeurs_propres_FT_sx_v = eig(A_s);
-poles_FT_sx_v = roots(den_FT_sx);
-zeros_FT_sx_v = roots(num_FT_sx(2,:));
-figure("Name", 'Lieu des racines FT sx v')
-rlocus(FT_sx_v);
-
-valeurs_propres_sy_p = eig(A_s);
-poles_FT_sy_p = roots(den_FT_sy);
-zeros_FT_sy_p = roots(num_FT_sy(1,:));
-figure("Name", 'Lieu des racines FT sy p')
-rlocus(FT_sy_p);
-
-valeurs_propres_sy_v = eig(A_s);
-poles_FT_sy_v = roots(den_FT_sy);
-zeros_FT_sy_v = roots(num_FT_sy(2,:));
-figure("Name",' Lieu des racines FT sy v')
-rlocus(FT_sy_v);
+% valeurs_propres_FT_phi = eig(A_phi);
+% poles_FT_phi = roots(den_FT_phi);
+% zeros_FT_phi = roots(num_FT_phi);
+% figure("Name", 'Lieu des racines FT Phi')
+% rlocus(FT_phi);
+% 
+% valeurs_propres_FT_theta = eig(A_theta);
+% poles_FT_theta = roots(den_FT_sx);
+% zeros_FT_theta = roots(num_FT_theta);
+% figure("Name", 'Lieu des racines FT Theta')
+% rlocus(FT_theta);
+% 
+% valeurs_propres_FT_z = eig(A_z);
+% poles_FT_z = roots(den_FT_z);
+% zeros_FT_z = roots(num_FT_z);
+% figure("Name", 'Lieu des racines FT Z')
+% rlocus(FT_z);
+% 
+% valeurs_propres_FT_sx_p = eig(A_s);
+% poles_FT_sx_p = roots(den_FT_sx);
+% zeros_FT_sx_p = roots(num_FT_sx(1,:));
+% figure("Name", 'Lieu des racines FT sx p')
+% rlocus(FT_sx_p);
+% 
+% valeurs_propres_FT_sx_v = eig(A_s);
+% poles_FT_sx_v = roots(den_FT_sx);
+% zeros_FT_sx_v = roots(num_FT_sx(2,:));
+% figure("Name", 'Lieu des racines FT sx v')
+% rlocus(FT_sx_v);
+% 
+% valeurs_propres_sy_p = eig(A_s);
+% poles_FT_sy_p = roots(den_FT_sy);
+% zeros_FT_sy_p = roots(num_FT_sy(1,:));
+% figure("Name", 'Lieu des racines FT sy p')
+% rlocus(FT_sy_p);
+% 
+% valeurs_propres_sy_v = eig(A_s);
+% poles_FT_sy_v = roots(den_FT_sy);
+% zeros_FT_sy_v = roots(num_FT_sy(2,:));
+% figure("Name",' Lieu des racines FT sy v')
+% rlocus(FT_sy_v);

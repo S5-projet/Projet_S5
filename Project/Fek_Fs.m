@@ -43,11 +43,11 @@ disp(Fs_coeff);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %       Graphique de comparaison du Fs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-figure(1);
-plot(z_pos_100,Fs_coeff2);
-title('Lissage du Fs');
-hold on;
-plot(z_pos,Fs);
+% figure(1);
+% plot(z_pos_100,Fs_coeff2);
+% title('Lissage du Fs');
+% hold on;
+% plot(z_pos,Fs);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -71,11 +71,11 @@ Fe_m1A_coeff2 = num_m1A./(Fe_m1A_coeff(1) + Fe_m1A_coeff(2).*z_m1A + Fe_m1A_coef
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Graphique de comparaison du Fe_m1A
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-figure(2);
-plot(z_m1A,Fe_m1A_coeff2);
-title('Lissage du Fe-m1A');
-hold on;
-plot(z_m1A,Fe_m1A);
+% figure(2);
+% plot(z_m1A,Fe_m1A_coeff2);
+% title('Lissage du Fe-m1A');
+% hold on;
+% plot(z_m1A,Fe_m1A);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -97,11 +97,11 @@ Fe_m2A_coeff2 = num_m2A./(Fe_m2A_coeff(1) + Fe_m2A_coeff(2).*z_m2A + Fe_m2A_coef
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Graphique de comparaison du Fe_m2A
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-figure(3);
-plot(z_m2A,Fe_m2A_coeff2);
-title('Lissage du Fe-m2A');
-hold on;
-plot(z_m2A,Fe_m2A);
+% figure(3);
+% plot(z_m2A,Fe_m2A_coeff2);
+% title('Lissage du Fe-m2A');
+% hold on;
+% plot(z_m2A,Fe_m2A);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
