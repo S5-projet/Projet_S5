@@ -1,6 +1,6 @@
 clc 
 close all 
-clear all
+
 x=[0 1 7 3 3 2 8]'
 y=[0 1 2 3 4 5 6]'
 
