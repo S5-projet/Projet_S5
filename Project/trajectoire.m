@@ -1,8 +1,8 @@
 clc 
 close all 
 clear all
-x=[0 1 2 3]';
-y=[0 1 2 3]';
+x=[0 1 7 3 3 2 8]';
+y=[0 1 2 3 4 5 6]';
 v= 0.5;
 ts= 0.04;
 
@@ -23,7 +23,7 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
     
     %Calcul longueur trajectoire
     
-    M=101;
+    M=15;
     dx = linspace(x(1), x(end), M);
     fy=polyval(Pi,dx);
     
@@ -60,32 +60,27 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
     d = v*ts;
     O = round(Ltr(end)/(d));
     Vr = Ltr(end)*(ts/(O));
-    dl= Ltr(end)/O;
+    dl= sign(x(2)-x(1))*Ltr(end)/O;
     % Newton-Raphson
     
     
     fn(1)=0;
     an=x(1);
     X(1)=an;
-    for i=2:O
+    it=0;
+    for i=1:O
         bn = an + 0.001;
-        xn = linspace(an, bn, M);
-        yd= polyval(Pi_d,xn);
-        g= sqrt(1+(yd).^2);
-        dn= g(end);
-        h1=(xn(2)-xn(1));
-        fn=(g(1)+g(i)+4*sum(g(2:2:M-1))+2*sum(g(3:2:M-1)))*h/3;
         it=0;
         tol=1e-08;
     
-        while abs(fn)> tol
-            bn = bn-((fn-dl)/dn);
+        while abs(fn) > tol
             xn = linspace(an, bn, M);
             yd= polyval(Pi_d,xn);
             g= sqrt(1+(yd).^2);
             dn= g(end);
             h1=(xn(2)-xn(1));
-            fn=(g(1)+g(i)+4*sum(g(2:2:M-1))+2*sum(g(3:2:M-1)))*h/3;
+            fn = (g(1) + g(M) + 2*sum(g(2:M-1)))*h1/2;
+            bn = bn-((fn-dl)/dn);
             it=it+1;
         end 
 
@@ -93,7 +88,8 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
         an = bn;
         end
     Y = polyval(flip(Pi),X)
+    disp(it)
 end 
  
-% dl = racine xn^2+ y(xn)^2
+
 
