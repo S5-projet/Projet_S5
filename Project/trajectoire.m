@@ -25,7 +25,7 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
     
     M=15;
     dx = linspace(x(1), x(end), M);
-    fy=polyval(Pi,dx);
+    fy= polyval(Pi,dx);
     
     
     
