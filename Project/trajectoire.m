@@ -1,14 +1,9 @@
 clc 
 close all 
-<<<<<<< HEAD
+
 clear all
 x=[0 1 2 3 4 5 6]';
 y=[0 1 7 3 3 2 8]';
-=======
-
-x=[0 1 7 3 3 2 8]'
-y=[0 1 2 3 4 5 6]'
->>>>>>> ee520c7bf0def907087a5587872453e16578686d
 
 v= 0.5;
 ts= 0.04;
@@ -32,18 +27,14 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
     
     M=15;
     dx = linspace(x(1), x(end), M);
-<<<<<<< HEAD
+
     fy=polyval(Pi,dx);
 
     figure
     plot(x,y)
-%     hold on
-%     plot(dx, fy)
-=======
-    fy= polyval(Pi,dx);
-    
-    
->>>>>>> ee520c7bf0def907087a5587872453e16578686d
+    hold on
+    plot(dx, fy)
+
     
     for i=1:length(Pi)-1
         Pi_d(i)= (N-i)*Pi(i);
@@ -70,6 +61,8 @@ function [Pi,Ltr, E, Vr, Traj, tt, tab]= traject(x,y,v,ts)
     dg= (yd.*ydd./g);
     
     E=(h^2/12)*(dg(end)-dg(1));
+    dist()
+
     
     % calcul de O et vitesse réel 
     
