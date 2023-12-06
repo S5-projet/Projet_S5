@@ -64,7 +64,7 @@ Va_eq= -1.958610351455148886847464609881;
 Vb_eq= -1.958610351455148886847464609881;
 Vc_eq= -1.958610351455148886847464609881;
 
-
+zdef = [zd ze zf];
 
 Fa = ((ia^2+b_e1*abs(ia))*sign(ia))/(a_e0+a_e1*za+a_e2*za^2+a_e3*za^3)-(1/(a_s0+a_s1*za+a_s2*za^2+a_s3*za^3+a_s4*za^4+a_s5*za^5+a_s6*za^6));
 Fb = ((ib^2+b_e1*abs(ib))*sign(ib))/(a_e0+a_e1*zb+a_e2*zb^2+a_e3*zb^3)-(1/(a_s0+a_s1*zb+a_s2*zb^2+a_s3*zb^3+a_s4*zb^4+a_s5*zb^5+a_s6*zb^6));
