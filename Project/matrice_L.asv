@@ -64,9 +64,9 @@ Va_eq= -1.958610351455148886847464609881;
 Vb_eq= -1.958610351455148886847464609881;
 Vc_eq= -1.958610351455148886847464609881;
 
-zd_simu = double(subs(zd,[Yd Ax Xd Ay Pz],[Yd Ax_des Xd Ay_des Pz_des]) );
-ze_simu = double(subs(ze,[Ye Ax Xe Ay Pz],[Ye Ax_des Xe Ay_des Pz_des]) );
-zf_simu = double(subs(zf,[Yf Ax Xf Ay Pz],[Yf Ax_des Xf Ay_des Pz_des]) );
+zd_simu = double(subs(zd));
+ze_simu = double(ze);
+zf_simu = double(zf);
 
 zdef = [zd_simu ze_simu zf_simu];
 
@@ -145,7 +145,7 @@ PC = [(diff(Mx,ia)) (diff(Mx,ib)) (diff(Mx,ic)) ;
       (diff(My,ia)) (diff(My,ib)) (diff(My,ic)) ;
       (diff(Fz,ia)) (diff(Fz,ib)) (diff(Fz,ic))];
 
-PC_eq = double(subs(PC,[ia ib ic Va Vb Vc Ax Ay Px Py Pz],[ia_eq ib_eq ic_eq Va_eq Vb_eq Vc_eq Ax_des Ay_des Px_des Py_des Pz_des]));  
+PC_eq = double(subs0(PC,[ia ib ic Va Vb Vc Ax Ay Px Py Pz],[ia_eq ib_eq ic_eq Va_eq Vb_eq Vc_eq Ax_des Ay_des Px_des Py_des Pz_des]));  
 
 
 
@@ -156,7 +156,6 @@ Tdef=[Yd -Xd 1;
 Tdeft=Tdef';
 
 Tdeft1=inv(Tdeft);
-Tdeft2 = Tdeft1';
   
   
   
