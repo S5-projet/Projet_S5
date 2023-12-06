@@ -64,7 +64,7 @@ plot(ynonlineaire(:,7),ynonlineaire(:,8));
 title('Trajectoire attendue')
 subplot(1,2,2)
 axis([-0.06 0.06 -0.06 0.06]);
-plot(ynonlineaire1(:,8),ynonlineaire1(:,7));
+plot(ynonlineaire1(:,7),ynonlineaire1(:,8));
 title('Trajectoire effectué')
 hold off;
 
