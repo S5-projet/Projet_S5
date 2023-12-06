@@ -40,6 +40,10 @@ tfin = 50;
 %initialisation
 bancessai_ini  %faites tous vos calculs de modele ici
 bancEssaiConstantes
+Compensateur_hauteur_plaque_Cas1
+Compensateur_hauteur_plaque_Cas2
+Compensateur_inclinaison_plaque
+Compensateur_position_sphere
 
 %Calcul des compensateurs
 %iniCTL_ver4    %Calculez vos compensateurs ici
