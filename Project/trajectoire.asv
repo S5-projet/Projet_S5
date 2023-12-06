@@ -18,25 +18,23 @@ plot(Traj(:, 1), Traj(:, 2), ':xk');
 scatter(x, y, 'b', 'linewidth', 2);
 hold off
 
-[N M] = size(x);
-[L K] = size(Traj);
+[N M] = size(x)
+[L K] = size(Traj)
 dist = zeros(L, 1);
 index = zeros(N, 1);
 for i = 1:N
     for j = 1:L
         dist(j) = sqrt((y(i) - Traj(j, 2))^2 + (x(i) - Traj(j, 1))^2);
     end
-    %disp(dist)
+    disp(dist)
     [bogus index(i)] = min(dist);
 end
 
 for i = 1:N
     Traj_E(i, :) = [Traj(index(i), 1) Traj(index(i), 2)];
 end
-R_carre = sum(Traj_E(:,2)-(mean(y))^2)/sum(y-(mean(y))^2);
-err_RMS = sqrt(mean((Traj_E(:,2)-y).*(Traj_E(:,2)-y)));
-disp("R2 : " + R_carre)
-disp("RMS : " + err_RMS)
+R_carre = sum(())
+
 
 function [Pi,Ltr, E, Vr, Traj, tt]= traject(x,y,v,ts)
 
@@ -89,7 +87,7 @@ function [Pi,Ltr, E, Vr, Traj, tt]= traject(x,y,v,ts)
     %calcul de l'erreur 
     dg = (yd.*ydd./g);
     
-    E = (h^2/12)*(((dg(end)-dg(end-1))/h)-((dg(2)-dg(1))/h));
+    E = (h^2/12)*(dg(end)-dg(1));
 
     
     % calcul de O et vitesse réel 
@@ -127,7 +125,7 @@ function [Pi,Ltr, E, Vr, Traj, tt]= traject(x,y,v,ts)
         
     end
     Y = polyval(Pi,X);
-    %disp("O" + O)
+    disp("O" + O)
     Traj = [X' Y'];
    
 end 
