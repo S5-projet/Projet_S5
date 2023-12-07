@@ -2,8 +2,9 @@
 
 %%%%%%%%%%%%%%%%%%% Commande de base %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-clc
-close all
+% clc
+% clear all
+% close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -20,8 +21,9 @@ FTBO_hpc2 = tf(29.36,[1 31.3 -1216 -3.805e04]);
 
 %%%%%%%%%%%%% Conception d'un Double AvPh %%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% zeta = 0.5*sqrt(tand(pm)*sind(pm))
-% wn = (wg*tand(pm))/(2*zeta)
+zeta = 0.5*sqrt(tand(pm_hpc2)*sind(pm_hpc2));
+wn = (wg_hpc2*tand(pm_hpc2))/(2*zeta);
+bw = wn*sqrt((1-2*zeta^2)+sqrt(4*zeta^4-4*zeta^2+2));
 kpos_desire_hpc2 = 1/erreur_echelon2_hpc2;
 [mag_hpc2,pha_hpc2]=bode(FTBO_hpc2,wg_hpc2);
 K_desire_hpc2 = 1/mag_hpc2;
@@ -64,12 +66,22 @@ FT_DAvPh_PI_hpc2 = FT_DAvPh_hpc2*G_PI_hpc2;
 t = (0:0.0001:0.5);
 u = ones(size(t));
 y = lsim(feedback(FT_DAvPh_PI_hpc2,1),u,t);
+
 figure(1)
 plot(t,y)
+title('Réponse à un échelon unitaire')
+xlabel('Temps (s)')
+ylabel('Hauteur de la plaque')
+yline(1,'r')
+grid minor
+
 
 % Lieu de Bode
 figure(2)
-margin(FT_DAvPh_PI_hpc2)
+margin(FTBO_hpc2)
+hold on
+margin(FT_DAvPh_PI_hpc2);
+legend('FT','FT compensé')
 
 % Lieu de Nyquist
 figure(3)
@@ -77,7 +89,10 @@ nyquist(FT_DAvPh_PI_hpc2);
 
 % Lieu des racines 
 figure(4)
-rlocus(FT_DAvPh_PI_hpc2);
+rlocus(FTBO_hpc2,'b');
+hold on
+rlocus(FT_DAvPh_PI_hpc2,'r');
+legend('FT','FT compensé')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+testdiscret(G_hpc2)
