@@ -1,22 +1,24 @@
 clc 
 close all
 clear all
-% x=[6 5 4 3 2 1 0]';
-% y=[8 2 3 3 7 1 0]';
+load('trajectoire_valid.mat')
 
-x=[0 1 2 3 4 5 6]';
-y=[0 1 7 3 3 2 8]';
+% --------- Trajectoire Segment BA ---------
 
-v= 10;
-ts= 0.04;
-
+v= vAB;
+ts= Ts;
+x=NAB(:,1);
+y=NAB(:,2);
 [Pi,Ltr, E, Vr, Traj, tt] = traject(x,y,v,ts);
 
 figure
 hold on
 plot(Traj(:, 1), Traj(:, 2), ':xk');
 scatter(x, y, 'b', 'linewidth', 2);
+title('Segment AB')
+legend('Trajectoire N-R', 'Trajectoire commande')
 hold off
+
 
 [N M] = size(x);
 [L K] = size(Traj);
@@ -35,8 +37,48 @@ for i = 1:N
 end
 R_carre = sum(Traj_E(:,2)-(mean(y))^2)/sum(y-(mean(y))^2);
 err_RMS = sqrt(mean((Traj_E(:,2)-y).*(Traj_E(:,2)-y)));
-disp("R2 : " + R_carre)
-disp("RMS : " + err_RMS)
+disp("erreur AB: " + E)
+disp("R2 AB: " + R_carre)
+disp("RMS AB: " + err_RMS)
+
+
+% --------- Trajectoire Segment BA --------- 
+v= vBA;
+ts= Ts;
+x=NBA(:,1);
+y=NBA(:,2);
+[Pi,Ltr, E, Vr, Traj, tt] = traject(x,y,v,ts);
+
+figure
+hold on
+plot(Traj(:, 1), Traj(:, 2), ':xk');
+scatter(x, y, 'b', 'linewidth', 2);
+title('Segment BA')
+legend('Trajectoire N-R', 'Trajectoire commande')
+hold off
+
+
+[N M] = size(x);
+[L K] = size(Traj);
+dist = zeros(L, 1);
+index = zeros(N, 1);
+for i = 1:N
+    for j = 1:L
+        dist(j) = sqrt((y(i) - Traj(j, 2))^2 + (x(i) - Traj(j, 1))^2);
+    end
+    %disp(dist)
+    [bogus index(i)] = min(dist);
+end
+
+for i = 1:N
+    Traj_E(i, :) = [Traj(index(i), 1) Traj(index(i), 2)];
+end
+R_carre = sum(Traj_E(:,2)-(mean(y))^2)/sum(y-(mean(y))^2);
+err_RMS = sqrt(mean((Traj_E(:,2)-y).*(Traj_E(:,2)-y)));
+disp(" ")
+disp("erreur BA: " + E)
+disp("R2 BA: " + R_carre)
+disp("RMS BA: " + err_RMS)
 
 function [Pi,Ltr, E, Vr, Traj, tt]= traject(x,y,v,ts)
 
@@ -58,13 +100,18 @@ function [Pi,Ltr, E, Vr, Traj, tt]= traject(x,y,v,ts)
     dx = linspace(x(1), x(end), M);
 
     fy=polyval(Pi,dx);
-
+    
     figure
-    plot(x,y)
+    scatter(x,y)
     hold on
     plot(dx, fy)
+    if v == 0.01
+        title('Segment AB')
+    else
+        title('segment BA')
+    end
+    legend('Trajectoire', 'Trajectoire interpolée')
 
-    
     for i=1:length(Pi)-1
         Pi_d(i)= (N-i)*Pi(i);
     end 
@@ -110,12 +157,12 @@ function [Pi,Ltr, E, Vr, Traj, tt]= traject(x,y,v,ts)
     tol=1e-08;
     for i=1:O
         while abs(fn) > tol && it < 1000
-            xn = linspace(an, bn, 15);
+            xn = linspace(an, bn, M);
             yd= polyval(Pi_d,xn);
             g= sqrt(1+(yd).^2);
             dn= g(end);
             h1=(xn(2)-xn(1));
-            fn = ((g(1) + g(15) + 4*sum(g(2:2:15-1)) + 2*sum(g(3:2:15-1)))*h1/3)-dl;
+            fn = ((g(1) + g(M) + 4*sum(g(2:2:M-1)) + 2*sum(g(3:2:M-1)))*h1/3)-dl;
             bn = bn - ((fn)/dn);
             it=it+1;
             %disp("an : " + an + ", bn : " + bn)
